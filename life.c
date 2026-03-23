@@ -49,26 +49,24 @@ void print_board(t_board board)
 
 t_board create_board(int w, int h)
 {
-	int index = 0;
-	int line = 0;
-	t_board board;
-	board.h = h;
-	board.w = w;
-	char **empty_board;
-	empty_board = (char **)calloc(h, sizeof(char*));
-	while(line < h)
-	{
-		empty_board[line] = (char *)calloc(w, sizeof(char));
-		index = 0;
-		while (index < w)
-		{
-			empty_board[line][index] = DEAD;
-			index++;
-		}
-		line++;
-	}
-	board.grid = empty_board;
-	return board;
+    int index = 0;
+    int line = 0;
+    t_board board;
+    board.h = h;
+    board.w = w;
+    board.grid = (char **)calloc(h, sizeof(char*));
+    while(line < h)
+    {
+        board.grid[line] = (char *)calloc(w, sizeof(char));
+        while (index < w)
+        {
+            board.grid[line][index] = DEAD;
+            index++;
+        }
+        index = 0;
+        line++;
+    }
+    return board;
 }
 
 int count_cells(t_board board, int x, int y)
@@ -151,8 +149,6 @@ void game_of_life(int w, int h, int ite)
 	while (ite)
 	{
 		board = update_board(board);
-		print_board(board);
-		putchar('\n');
 		ite--;
 	}
 	print_board(board);

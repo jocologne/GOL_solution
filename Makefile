@@ -7,7 +7,7 @@ OBJ = $(SRC:.c=.o)
 
 #INPUT
 INPUT ?= ssdxdd
-ARGS  ?= 5 5 5
+ARGS  ?= 5 5 4
 
 all: $(NAME)
 
