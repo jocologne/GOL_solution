@@ -6,8 +6,8 @@ SRC = life.c main.c
 OBJ = $(SRC:.c=.o)
 
 #INPUT
-INPUT ?= dxss
-ARGS	?= 3 3 10
+INPUT ?= ssdxdd
+ARGS  ?= 5 5 5
 
 all: $(NAME)
 

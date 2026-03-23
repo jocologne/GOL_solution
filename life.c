@@ -73,38 +73,24 @@ t_board create_board(int w, int h)
 
 int count_cells(t_board board, int x, int y)
 {
-	int dl = -1;
-	int di = -1;
-	int count = 0;
-	while (dl <= 1)
-	{
-		di = -1;
-		while (di <= 1)
-		{
-			int pox = x + di;
-			int poy = y + dl;
-			if (pox < 0 || pox > board.w -1)
-			{
-				di++;
-				continue;
-			}
-			if (poy < 0 || poy > board.h -1)
-			{
-				di++;
-				continue;
-			}
-			if (pox == x && poy == y)
-			{
-				di++;
-				continue;
-			}
-			if (board.grid[poy][pox] == LIVE)
-				count++;
-			di++;
-		}
-		dl++;
-	}
-	return count;
+    int count = 0;
+    for (int dl = -1; dl <= 1; dl++)
+    {
+        for (int di = -1; di <= 1; di++)
+        {
+            int pox = x + di;
+            int poy = y + dl;
+            if (pox < 0 || pox >= board.w)
+                continue;
+            if (poy < 0 || poy >= board.h)
+                continue;
+            if (pox == x && poy == y)
+                continue;
+            if (board.grid[poy][pox] == LIVE)
+                count++;
+        }
+    }
+    return count;
 }
 
 t_board update_board(t_board board)
@@ -170,5 +156,5 @@ void game_of_life(int w, int h, int ite)
 		ite--;
 	}
 	print_board(board);
-	ite++;
+	free_board(board);
 }
